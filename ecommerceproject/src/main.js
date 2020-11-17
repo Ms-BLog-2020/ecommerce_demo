@@ -5,6 +5,7 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import "bootstrap";
+import 'bootstrap/dist/css/bootstrap.css';
 import Loading from 'vue-loading-overlay'; //必須要被啟用
 import 'vue-loading-overlay/dist/vue-loading.css';
 import { ValidationObserver, ValidationProvider, extend, localize, configure } from 'vee-validate';
