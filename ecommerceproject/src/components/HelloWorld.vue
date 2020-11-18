@@ -23,6 +23,9 @@
               </a>
               <!-- 購物車內的數量 (Button 內包含 icon, 數量 badge) -->
               <div class="dropdown ml-auto">
+                <router-link to="/login" class="nav-link">
+                登入
+                </router-link>
                 <button class="btn btn-sm btn-cart" data-toggle="dropdown" data-flip="false">
                   <i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i>
                   <span class="badge badge-pill badge-danger">9</span>
@@ -97,6 +100,40 @@
                         </div>
                       </div>
                     </form>
+                  </div>
+                  <!-- 載入管理員新增商品選項 -->
+                  <loading :active.sync="isLoading"></loading>
+                  <div class="row mb-4 mt-4">
+                        <div class="col-md-4 mb-4" v-for="item in products" :key="item.id">
+                            <div class="card border-0 shadow-sm">
+                                <div style="height: 150px; background-size: cover; background-position: center"
+                                :style="{backgroundImage:`url(${item.imageUrl})`}"
+                                >
+                                </div>
+                                <div class="card-body">
+                                <span class="badge badge-secondary float-right ml-2">{{item.category}}</span>
+                                <h5 class="card-title">
+                                    <a href="#" class="text-dark">{{item.title}}</a>
+                                </h5>
+                                <p class="card-text">{{item.content}}</p>
+                                <div class="d-flex justify-content-between align-items-baseline">
+                                    <!-- <div class="h5">2,800 元</div> -->
+                                    <del class="h6">原價 {{item.origin_price}} 元</del>
+                                    <div class="h5">現在只要 {{item.price}} 元</div>
+                                </div>
+                                </div>
+                                <div class="card-footer d-flex">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" @click="getProduct(item.id)">
+                                    <i class="fas fa-spinner fa-spin"  v-if="status.loadingItem === product.id"></i>
+                                    查看更多
+                                </button>
+                                <button type="button" class="btn btn-outline-danger btn-sm ml-auto" @click="addtoCart(item.id)">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    加到購物車
+                                </button>
+                                </div>
+                            </div>
+                        </div>
                   </div>
                   <!-- 主要商品列表 (Card) -->
                   <div class="tab-content">
@@ -302,14 +339,14 @@
   
   
 
-  <script  type="application/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-  <script type="application/javascript"src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-    crossorigin="anonymous"></script>
+  
   <script type="application/javascript">
-     jQuery(document).ready(function () {
+
+import $ from 'jquery'; //載入modal
+
+export default {
+  mounted(){
+      $(document).ready(function () {
       $('#removeModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // 選則當初觸發事件的按鈕
         var title = button.data('title') // 使用 data-* 來取得特定內容
@@ -318,6 +355,129 @@
         modal.find('.modal-title').text('確認' + title) // 寫入資料
       })
     });
+  },
+  data() {
+    return {
+      products: [],
+      product: {}, //存放查看更多的Modal資料
+      isLoading: false,
+      status: {
+        loadingItem: '', //存放產品id
+      },
+      cart: {},
+      form: { //結構直接參考api設定的資料結構 存放顧客填寫的個人資料
+        user: {
+          name: '',
+          email: '',
+          tel: '',
+          address: '',
+        },
+        message: ''
+      }
+    }
+  },
+  methods: {
+    getProducts() {
+      const vm = this;
+      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
+      vm.isLoading = true;
+      this.$http.get(url).then((response) => {
+        vm.products = response.data.products;
+        console.log(response);
+        vm.isLoading = false;
+      });
+    },
+    getProduct(id) {
+      const vm = this;
+      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
+      // vm.isLoading = true;
+      vm.status.loadingItem = id;
+      this.$http.get(url).then((response) => {
+        vm.product = response.data.product; //先讀取完資料後
+        $('#productModal').modal('show'); //再將Modal打開
+        console.log(response);
+        // vm.isLoading = false;  
+        vm.status.loadingItem = ''; //Modal打開後將值替換成空的
+      });
+    },
+    addtoCart(id,qty=1){ //ES6 預設值設定方法 qty=1
+      const vm = this;
+      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+      vm.status.loadingItem = id;
+      const cart = { //定義資料結構
+        product_id: id,
+        qty,
+      };
+      this.$http.post(url, {data: cart}).then((response) => {
+        console.log(response);
+        vm.status.loadingItem = ''; //Modal打開後將值替換成空的
+        vm.getCart(); //把購物車取得回來
+        $('#productModal').modal('hide'); //加到購物車後關掉Modal
+      });
+    },
+    getCart(){
+      const vm = this;
+      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+      vm.isLoading = true;
+      this.$http.get(url).then((response) => {
+        vm.cart= response.data.data;
+        console.log(response);
+        vm.isLoading = false;
+      });
+    },
+    deleteCart(id){
+      const vm = this;
+      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${id}`;
+      // vm.isLoading = true;
+      this.$http.delete(url).then((response) => {
+         vm.getCart(); //這部我會忘記做 >> 刪除後重新取得購物車
+        console.log(response);
+        // vm.isLoading = false;
+    });
+    },
+    createOrder(){ //到上方綁定 >> @submit.prevent="createOrder"
+      const vm = this;
+      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order`;
+      const order = vm.form; //這部會忘記做
+      // vm.isLoading = true;
+      this.$validator.validate().then((result)=>{
+        if (result){
+            this.$http.post(url,{data:order}).then((response) => {
+            // vm.getCart(); 
+            console.log('訂單已建立',response);
+            // vm.isLoading = false;
+          })
+          }
+          else{
+            console.log('欄位不完整');
+          }
+      
+      
+    });
+    },
+  },
+  created() { //取得資料要在這邊設定
+    this.getProducts();
+    this.getCart(); //把購物車取得回來
+  },
+};
+
+
+  // export default {
+  //   mounted(){
+  //     $(document).ready(function () {
+  //     $('#removeModal').on('show.bs.modal', function (event) {
+  //       var button = $(event.relatedTarget) // 選則當初觸發事件的按鈕
+  //       var title = button.data('title') // 使用 data-* 來取得特定內容
+
+  //       var modal = $(this)
+  //       modal.find('.modal-title').text('確認' + title) // 寫入資料
+  //     })
+  //   });
+  //   }
+  // }
+
+     
   </script>
 
 

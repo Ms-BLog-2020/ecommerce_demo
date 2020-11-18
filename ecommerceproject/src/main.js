@@ -11,7 +11,9 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 import { ValidationObserver, ValidationProvider, extend, localize, configure } from 'vee-validate';
 import TW from 'vee-validate/dist/locale/zh_TW.json'
 import * as rules from 'vee-validate/dist/rules';
+import $ from 'jquery';
 
+window.$ = $;
 Object.keys(rules).forEach((rule) => {
   extend(rule, rules[rule]);
 });

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import Home from '@/components/HelloWorld';
+import Home from '@/components/HelloWorld';
 import Login from '@/components/pages/Login';
 import Dashboard02 from '@/components/Dashboard02';
 import Products from '@/components/pages/Products';
@@ -19,6 +19,11 @@ export default new VueRouter({
             name: 'Login',
             path: '/login',
             component: Login,
+        },
+        {
+            name: 'Home',
+            path: '/home',
+            component: Home,
         },
         {
             name: 'HelloWorld',
