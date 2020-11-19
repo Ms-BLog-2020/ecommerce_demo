@@ -5,6 +5,7 @@ import Login from '@/components/pages/Login';
 import Dashboard02 from '@/components/Dashboard02';
 import Products from '@/components/pages/Products';
 import CustomerOrders from '@/components/pages/CustomerOrders';
+import HomeCustomerOrders from '@/components/pages/HomeCustomerOrders';
 
 
 Vue.use(VueRouter)
@@ -16,14 +17,21 @@ export default new VueRouter({
             redirect: '/login', //避免用戶去不存在的頁面
         },
         {
-            name: 'Login',
-            path: '/login',
-            component: Login,
-        },
-        {
             name: 'Home',
             path: '/home',
             component: Home,
+            children: [
+                {
+                    name: 'HomeCustomerOrders',
+                    path: 'home_customer_order',
+                    component: HomeCustomerOrders,
+                },
+            ]
+        },
+        {
+            name: 'Login',
+            path: '/login',
+            component: Login,
         },
         {
             name: 'HelloWorld',
