@@ -15,16 +15,6 @@
 
       <body>
         
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <!-- headers -->
             <nav class="navbar navbar-light bg-light">
               <a class="navbar-brand" href="shoppingCart.html">
@@ -48,31 +38,33 @@
                 <h6>已選擇商品</h6>
                 <table class="table table-sm">
                   <tbody>
-                    <tr>
+                    <tr v-for="item in cart.carts">
                       <td class="align-middle text-center">
-                        <a href="#removeModal" class="text-muted" data-toggle="modal" data-title="刪除 金牌西裝 1 件">
+                        <button type="button" class="btn btn-outline-danger btn-sm" @click="deleteCart(item.id)">
                           <i class="fa fa-trash-o" aria-hidden="true"></i>
                         </a>
+                        </button>
                       </td>
-                      <td class="align-middle">金牌西裝</td>
-                      <td class="align-middle">1 件</td>
-                      <td class="align-middle text-right">$520</td>
-                    </tr>
-                    <tr>
-                      <td class="align-middle text-center">
-                        <a href="#removeModal" class="text-muted" data-toggle="modal" data-title="刪除 金牌女裝 1 件">
-                          <i class="fa fa-trash-o" aria-hidden="true"></i>
-                        </a>
+                      <td class="align-middle">
+                        {{ item.product.title }}
+                        <!-- <div class="text-success" v-if="item.coupon">
+                          已套用優惠券
+                        </div> -->
                       </td>
-                      <td class="align-middle">金牌女裝</td>
-                      <td class="align-middle">1 件</td>
-                      <td class="align-middle text-right">$480</td>
+                      <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td>
+                      <td class="align-middle text-right">{{ item.final_total }}</td>
                     </tr>
                   </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="3" class="text-right">總計</td>
+                      <td class="text-right">{{ cart.total }}</td>
+                    </tr>
+                  </tfoot>
                 </table>
-                <a href="shoppingCart-checkout.html" class="btn btn-primary btn-block">
+                <router-link to="/checkout" class="btn btn-primary btn-block">
                   <i class="fa fa-cart-plus" aria-hidden="true"></i> 結帳去
-                </a>
+                </router-link>
               </div>
               
             </nav>
@@ -151,7 +143,7 @@
 import $ from 'jquery'; //載入modal
 import Homesidebar from './Homesidebar';
 
-$('.dropdown-toggle').dropdown();
+// $('.dropdown-toggle').dropdown();
 
 
 export default {
@@ -241,11 +233,11 @@ export default {
     deleteCart(id){
       const vm = this;
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${id}`;
-      // vm.isLoading = true;
+      vm.isLoading = true;
       this.$http.delete(url).then((response) => {
          vm.getCart(); //這部我會忘記做 >> 刪除後重新取得購物車
         console.log(response);
-        // vm.isLoading = false;
+        vm.isLoading = false;
     });
     },
     createOrder(){ //到上方綁定 >> @submit.prevent="createOrder"

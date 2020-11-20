@@ -9,6 +9,8 @@ import HomeCustomerOrders from '@/components/pages/HomeCustomerOrders';
 import HomeCustomerOrdersB from '@/components/pages/HomeCustomerOrdersB';
 import HomeCustomerOrdersC from '@/components/pages/HomeCustomerOrdersC';
 
+import Checkout from '@/components/Checkout.vue';
+
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -37,7 +39,13 @@ export default new VueRouter({
                     path: '/customer_orders_c',
                     component: HomeCustomerOrdersC,
                 },
+                
             ]
+        },
+        {
+            name: 'Checkout.vue',
+            path: '/checkout',
+            component: Checkout.vue,
         },
         {
             name: 'Login',
