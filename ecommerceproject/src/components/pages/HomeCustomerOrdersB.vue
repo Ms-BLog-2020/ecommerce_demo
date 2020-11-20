@@ -14,7 +14,7 @@
         </div>
         <loading :active.sync="isLoading"></loading>
         <div class="row mb-4 mt-4">
-            <div class="col-md-4 mb-4" v-for="item in products" :key="item.id"  v-if="item.category==='工作坊'">
+            <div class="col-md-4 mb-4" v-for="item in products" :key="item.id"  v-if="item.category==='直播活動'">
                 <div class="card border-0 shadow-sm">
                     <div style="height: 150px; background-size: cover; background-position: center"
                     :style="{backgroundImage:`url(${item.imageUrl})`}"
@@ -45,31 +45,7 @@
                 </div>
             </div>
         </div>
-       
-        <!--分頁標籤-->
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item" :class="{'disabled':!pagination.has_pre}">
-                <a class="page-link" href="#" aria-label="Previous" @click.prevent="getProducts(pagination.current_page - 1)">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                </li>
-                <li class="page-item" v-for="page in pagination.total_pages" :key="page" 
-
-                :class="{'active':pagination.current_page===page}"
-                
-                @click.prevent="getProducts(page)">
-                <a class="page-link" href="#">{{page}}</a>
-                </li>
-                <li class="page-item" :class="{'disabled':!pagination.has_next}">
-                <a class="page-link" href="#" aria-label="Next" @click.prevent="getProducts(pagination.current_page + 1)">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-                </li>
-            </ul>
-        </nav>
+        
         
 
         <!-- Modal -->
@@ -122,23 +98,20 @@ export default {
         loadingItem: '', //存放產品id
       },
       cart: {},
-      pagination: {},
+      
     }
   },
   methods: {
-    getProducts(page=1){ //取得遠端資料的方法 //把Products存到宣告的products裡面 //將page傳進來 >> getProducts(page=1) 預設值帶第一頁進來
-            const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products?page=${page}`; //${page} 設定變數
-            const vm = this; //確保資料存到vm裡面
-            console.log(process.env.APIPATH,process.env.CUSTOMPATH);
-            vm.isLoading = true;
-            this.$http.get(api).then((response) => {
-            console.log(response.data);
-            vm.isLoading = false;
-            vm.products = response.data.products; //可以用Vue檢查一下資料有沒有get到
-            vm.pagination = response.data.pagination;
-            })
-     },
-    
+    getProducts() {
+      const vm = this;
+      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
+      vm.isLoading = true;
+      this.$http.get(url).then((response) => {
+        vm.products = response.data.products;
+        console.log(response);
+        vm.isLoading = false;
+      });
+    },
     getProduct(id) {
       const vm = this;
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;

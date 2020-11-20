@@ -32,6 +32,7 @@
             </tbody>
 
        </table>
+       <!--分頁標籤-->
        <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item" :class="{'disabled':!pagination.has_pre}">
@@ -41,9 +42,10 @@
                 </a>
                 </li>
                 <li class="page-item" v-for="page in pagination.total_pages" :key="page" 
-                :class="{'active':pagination.total_pages===page}"
+                :class="{'active':pagination.current_page===page}"
                 @click.prevent="getProducts(page)">
-                <a class="page-link" href="#">{{page}}</a></li>
+                <a class="page-link" href="#">{{page}}</a>
+                </li>
                 <li class="page-item" :class="{'disabled':!pagination.has_next}">
                 <a class="page-link" href="#" aria-label="Next" @click.prevent="getProducts(pagination.current_page + 1)">
                     <span aria-hidden="true">&raquo;</span>
@@ -93,8 +95,14 @@
                     <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="category">分類</label>
-                        <input type="text" class="form-control" id="category"
+                        <select class="form-control" id="category"
                         placeholder="請輸入分類" v-model="tempProduct.category">
+                            <option>課程</option>
+                            <option>工作坊</option>
+                            <option>直播活動</option>
+                            <option>一對一諮詢</option>
+                            <option>教材</option>
+                        </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="price">單位</label>

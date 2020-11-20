@@ -2,7 +2,7 @@
     <div>
         <loading :active.sync="isLoading"></loading>
         <div class="row mb-4 mt-4">
-            <div class="col-md-4 mb-4" v-for="item in products" :key="item.id">
+            <div class="col-md-4 mb-4" v-for="item in products" :key="item.id" >
                 <div class="card border-0 shadow-sm">
                     <div style="height: 150px; background-size: cover; background-position: center"
                     :style="{backgroundImage:`url(${item.imageUrl})`}"

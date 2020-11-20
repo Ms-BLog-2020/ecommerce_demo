@@ -15,6 +15,16 @@
 
       <body>
         
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             <!-- headers -->
             <nav class="navbar navbar-light bg-light">
               <a class="navbar-brand" href="shoppingCart.html">
@@ -23,45 +33,48 @@
               </a>
               <!-- 購物車內的數量 (Button 內包含 icon, 數量 badge) -->
               <div class="dropdown ml-auto">
+                
                 <router-link to="/login" class="nav-link">
                 登入
                 </router-link>
-                <button class="btn btn-sm btn-cart" data-toggle="dropdown" data-flip="false">
-                  <i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i>
-                  <span class="badge badge-pill badge-danger">9</span>
-                  <span class="sr-only">unread messages</span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right p-3" style="min-width: 300px" data-offset="400">
-                  <h6>已選擇商品</h6>
-                  <table class="table table-sm">
-                    <tbody>
-                      <tr>
-                        <td class="align-middle text-center">
-                          <a href="#removeModal" class="text-muted" data-toggle="modal" data-title="刪除 金牌西裝 1 件">
-                            <i class="fa fa-trash-o" aria-hidden="true"></i>
-                          </a>
-                        </td>
-                        <td class="align-middle">金牌西裝</td>
-                        <td class="align-middle">1 件</td>
-                        <td class="align-middle text-right">$520</td>
-                      </tr>
-                      <tr>
-                        <td class="align-middle text-center">
-                          <a href="#removeModal" class="text-muted" data-toggle="modal" data-title="刪除 金牌女裝 1 件">
-                            <i class="fa fa-trash-o" aria-hidden="true"></i>
-                          </a>
-                        </td>
-                        <td class="align-middle">金牌女裝</td>
-                        <td class="align-middle">1 件</td>
-                        <td class="align-middle text-right">$480</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <a href="shoppingCart-checkout.html" class="btn btn-primary btn-block">
-                    <i class="fa fa-cart-plus" aria-hidden="true"></i> 結帳去
-                  </a>
-                </div>
+                
               </div>
+              <button class="btn btn-sm btn-cart" data-toggle="dropdown" data-flip="false">
+                <i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i>
+                <span class="badge badge-pill badge-danger">9</span>
+                <span class="sr-only">unread messages</span>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right p-3" style="min-width: 300px" data-offset="400">
+                <h6>已選擇商品</h6>
+                <table class="table table-sm">
+                  <tbody>
+                    <tr>
+                      <td class="align-middle text-center">
+                        <a href="#removeModal" class="text-muted" data-toggle="modal" data-title="刪除 金牌西裝 1 件">
+                          <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </a>
+                      </td>
+                      <td class="align-middle">金牌西裝</td>
+                      <td class="align-middle">1 件</td>
+                      <td class="align-middle text-right">$520</td>
+                    </tr>
+                    <tr>
+                      <td class="align-middle text-center">
+                        <a href="#removeModal" class="text-muted" data-toggle="modal" data-title="刪除 金牌女裝 1 件">
+                          <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </a>
+                      </td>
+                      <td class="align-middle">金牌女裝</td>
+                      <td class="align-middle">1 件</td>
+                      <td class="align-middle text-right">$480</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <a href="shoppingCart-checkout.html" class="btn btn-primary btn-block">
+                  <i class="fa fa-cart-plus" aria-hidden="true"></i> 結帳去
+                </a>
+              </div>
+              
             </nav>
             <div class="jumbotron jumbotron-fluid jumbotron-bg d-flex align-items-end">
               <div class="container">
@@ -80,57 +93,7 @@
 
                   
                   
-                  <!-- 主要商品列表 (Card) -->
-                  <div class="tab-content">
-                    <div class="tab-pane active" id="list-gold">
-                      <div class="row">
-                        <!-- 金牌 -->
-                        
-                      </div>
-                      <!-- pagination -->
-                      <nav aria-label="Page navigation" class="my-5">
-                        <ul class="pagination justify-content-center">
-                          <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                          </li>
-                          <li class="page-item">
-                            <a class="page-link" href="#">1</a>
-                          </li>
-                          <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                          </li>
-                          <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                          </li>
-                          <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                          </li>
-                        </ul>
-                      </nav>
-                    </div>
-
-                    <div class="tab-pane" id="list-gift">
-                      <div class="row align-items-stretch">
-                        <!-- 禮品 -->
-                        <div class="col-md-4 mb-4">
-                          <div class="card border-0 box-shadow text-center h-100">
-                            <img class="card-img-top" src="https://images.unsplash.com/photo-1482173074468-5b323335debe?w=1350" alt="Card image cap">
-                            <div class="card-body">
-                              <h4 class="card-title">超精緻禮物</h4>
-                              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
-                                is a little bit longer.</p>
-                            </div>
-                            <div class="card-footer border-top-0 bg-white">
-                              <a href="#" class="btn btn-outline-secondary btn-block btn-sm">
-                                <i class="fa fa-cart-plus" aria-hidden="true"></i> 搶購去
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- tab-content end -->
+                  
 
                 </div>
 
@@ -187,6 +150,8 @@
 
 import $ from 'jquery'; //載入modal
 import Homesidebar from './Homesidebar';
+
+$('.dropdown-toggle').dropdown();
 
 
 export default {

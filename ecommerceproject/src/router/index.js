@@ -6,7 +6,8 @@ import Dashboard02 from '@/components/Dashboard02';
 import Products from '@/components/pages/Products';
 import CustomerOrders from '@/components/pages/CustomerOrders';
 import HomeCustomerOrders from '@/components/pages/HomeCustomerOrders';
-
+import HomeCustomerOrdersB from '@/components/pages/HomeCustomerOrdersB';
+import HomeCustomerOrdersC from '@/components/pages/HomeCustomerOrdersC';
 
 Vue.use(VueRouter)
 
@@ -23,8 +24,18 @@ export default new VueRouter({
             children: [
                 {
                     name: 'HomeCustomerOrders',
-                    path: 'home_customer_order',
+                    path: '',
                     component: HomeCustomerOrders,
+                },
+                {
+                    name: 'HomeCustomerOrdersB',
+                    path: '/customer_orders_b',
+                    component: HomeCustomerOrdersB,
+                },
+                {
+                    name: 'HomeCustomerOrdersC',
+                    path: '/customer_orders_c',
+                    component: HomeCustomerOrdersC,
                 },
             ]
         },
