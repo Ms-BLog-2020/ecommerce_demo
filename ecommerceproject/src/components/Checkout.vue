@@ -1,5 +1,5 @@
 
-
+   
             <head>
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,8 +11,10 @@
                 <link rel="stylesheet" href="custom.css">
             </head>
 
-            <body>
-                <div>
+<body>
+            
+                
+    <div id="app">
                     <!-- headers -->
                     <nav class="navbar navbar-light bg-light">
                         <a class="navbar-brand" >
@@ -209,13 +211,15 @@
                         </div>
                         </div>
                     </div>
-                </div>
-            </body>
+    </div>
+                
+            
+
+    
+        
 
 
-
-
-            <script type="application/javascript">
+    <script>
                 // var vm = new Vue({
                 //     el: 'app'
                 // });
@@ -229,12 +233,25 @@
 
                                 var modal = $(this)
                                 modal.find('.modal-title').text('確認' + title) // 寫入資料
-                                })
-                            });
+                            })
+                        });
                     }
                 }
-            </script>
 
+        
+                        // $(document).ready(function () {
+                        //     $('#removeModal').on('show.bs.modal', function (event) {
+                        //         var button = $(event.relatedTarget) // 選則當初觸發事件的按鈕
+                        //         var title = button.data('title') // 使用 data-* 來取得特定內容
+
+                        //         var modal = $(this)
+                        //         modal.find('.modal-title').text('確認' + title) // 寫入資料
+                        //     })
+                        // });
+                
+
+    </script>
+</body>
     
 
     

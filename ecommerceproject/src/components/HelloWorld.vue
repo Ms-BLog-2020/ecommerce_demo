@@ -31,7 +31,7 @@
               </div>
               <button class="btn btn-sm btn-cart" data-toggle="dropdown" data-flip="false">
                 <i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i>
-                <span class="badge badge-pill badge-danger">9</span>
+                <span class="badge badge-pill badge-danger" v-for="item in cart.carts">{{ item.qty }}</span>
                 <span class="sr-only">unread messages</span>
               </button>
               <div class="dropdown-menu dropdown-menu-right p-3" style="min-width: 300px" data-offset="400">
@@ -68,6 +68,7 @@
               </div>
               
             </nav>
+            
             <div class="jumbotron jumbotron-fluid jumbotron-bg d-flex align-items-end">
               <div class="container">
                 <div class="p-3 bg-lighter">
@@ -79,16 +80,9 @@
             <div class="container main-contant mb-1">
               <div class="row">
                 <Homesidebar></Homesidebar>
-                
                 <div class="col-md-9">
                   <router-view></router-view>
-
-                  
-                  
-                  
-
                 </div>
-
               </div>
             </div>
             <footer class="bg-light text-muted py-5">
