@@ -9,7 +9,9 @@ import HomeCustomerOrders from '@/components/pages/HomeCustomerOrders';
 import HomeCustomerOrdersB from '@/components/pages/HomeCustomerOrdersB';
 import HomeCustomerOrdersC from '@/components/pages/HomeCustomerOrdersC';
 
-import Checkout from '@/components/Checkout.vue';
+import Checkout from '@/components/Checkout';
+import Productdetail from '@/components/Productdetail';
+import CustomerFinishPay from '@/components/CustomerFinishPay';
 
 Vue.use(VueRouter)
 
@@ -43,9 +45,19 @@ export default new VueRouter({
             ]
         },
         {
-            name: 'Checkout.vue',
+            name: 'Checkout',
             path: '/checkout',
-            component: Checkout.vue,
+            component: Checkout,
+        },
+        {
+            name: 'CustomerFinishPay',
+            path: '/customer_finish_pay/:orderId',
+            component: CustomerFinishPay,
+        },
+        {
+            name: 'Productdetail',
+            path: '/productdetail',
+            component: Productdetail,
         },
         {
             name: 'Login',

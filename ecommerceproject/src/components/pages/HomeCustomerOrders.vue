@@ -33,13 +33,13 @@
                     </div>
                     </div>
                     <div class="card-footer d-flex">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" @click="getProduct(item.id)">
+                    <router-link type="button" class="btn btn-outline-secondary btn-sm" to="/productdetail" @click="getProduct(item.id)">
                         <i class="fas fa-spinner fa-spin"  v-if="status.loadingItem === product.id"></i>
-                        查看更多
-                    </button>
+                        了解詳情
+                    </router-link>
                     <button type="button" class="btn btn-outline-danger btn-sm ml-auto" @click="addtoCart(item.id)">
                         <i class="fas fa-spinner fa-spin"></i>
-                        加到購物車車
+                        加到購物車
                     </button>
                     </div>
                 </div>
@@ -152,6 +152,18 @@ export default {
         vm.status.loadingItem = ''; //Modal打開後將值替換成空的
       });
     },
+    // productDetail(id) {
+    //   const vm = this;
+    //   const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
+    //   // vm.isLoading = true;
+    //   vm.status.loadingItem = id;
+    //   this.$http.get(url).then((response) => {
+    //     vm.product = response.data.product; //先讀取完資料後
+    //     console.log(response);
+    //     // vm.isLoading = false;  
+    //     vm.status.loadingItem = ''; //Modal打開後將值替換成空的
+    //   });
+    // },
     addtoCart(id,qty=1){ //ES6 預設值設定方法 qty=1
       const vm = this;
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;

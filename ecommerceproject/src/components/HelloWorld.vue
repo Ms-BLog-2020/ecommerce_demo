@@ -189,13 +189,13 @@ export default {
     getProduct(id) {
       const vm = this;
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
-      // vm.isLoading = true;
+      vm.isLoading = true;
       vm.status.loadingItem = id;
       this.$http.get(url).then((response) => {
         vm.product = response.data.product; //先讀取完資料後
         $('#productModal').modal('show'); //再將Modal打開
         console.log(response);
-        // vm.isLoading = false;  
+        vm.isLoading = false;  
         vm.status.loadingItem = ''; //Modal打開後將值替換成空的
       });
     },
