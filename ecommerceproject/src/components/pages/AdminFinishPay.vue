@@ -12,11 +12,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item in order.products" :key="item.id" >
+                    <tr>
                     
                     <td class="align-middle"></td>
-                    <td class="align-middle">{{item.product.title}}</td>
-                    <td class="align-middle">{{item.product.num}}/{{item.product.unit}}</td>
+                    <td class="align-middle"></td>
+                    <td class="align-middle"></td>
                     <td class="align-middle text-right">$520</td>
                     </tr>
                     <tr>
@@ -33,25 +33,23 @@
                 <tbody>
                     <tr>
                     <th width="200">Email</th>
-                    <td>{{order.user.email}}</td>
+                    <td></td>
                     </tr>
                     <tr>
                     <th>姓名 </th>
-                    <td>{{order.user.name}}</td>
+                    <td></td>
                     </tr>
                     <tr>
                     <th>電話 </th>
-                    <td>{{order.user.tel}}</td>
+                    <td></td>
                     </tr>
                     <tr>
                     <th>地址 </th>
-                    <td>{{order.user.address}}</td>
+                    <td></td>
                     </tr>
                 </tbody>
                 </table>
-                <div class="text-right" v-if="order.is_paid === false">
-                    <button type="submit" class="btn btn-danger" >確認付款</button>
-                </div>
+                
             </form>
     </div>
 </template>
@@ -61,7 +59,7 @@ export default {
     data(){
         return{
           orderId: '',
-          orders: {}
+          order: {}
         }
     },
     methods:{
@@ -91,6 +89,7 @@ export default {
     created(){
        this.orderId=this.$route.params.orderId;
         console.log(this.orderId);
+        this.finishOrder();
         
     },
     mounted(){
