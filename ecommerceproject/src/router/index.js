@@ -8,6 +8,7 @@ import CustomerOrders from '@/components/pages/CustomerOrders';
 import HomeCustomerOrders from '@/components/pages/HomeCustomerOrders';
 import HomeCustomerOrdersB from '@/components/pages/HomeCustomerOrdersB';
 import HomeCustomerOrdersC from '@/components/pages/HomeCustomerOrdersC';
+import AdminFinishPay from '@/components/pages/AdminFinishPay';
 
 import Checkout from '@/components/Checkout';
 import Productdetail from '@/components/Productdetail';
@@ -73,6 +74,12 @@ export default new VueRouter({
                     name: 'Products',
                     path: 'products',
                     component: Products,
+                    meta: { requiresAuth: true } //確保進入頁面前有經過驗證
+                },
+                {
+                    name: 'AdminFinishPay',
+                    path: 'admin_finish_pay/:orderId',
+                    component: AdminFinishPay,
                     meta: { requiresAuth: true } //確保進入頁面前有經過驗證
                 },
             ]

@@ -108,6 +108,33 @@
                             <span v-if="passed" class="valid-feedback">Email 正確</span>
                           
                           </ValidationProvider>
+                          <ValidationProvider rules="required" name="name" class="form-group" tag="div" v-slot="{ errors, classes, passed }">
+                            <!-- 輸入框 -->
+                            <label for="name">姓名</label>
+                            <input id="name" type="text" name="name" v-model="form.user.name"
+                                  class="form-control" :class="classes">
+                            <!-- 錯誤訊息 -->
+                            <span class="invalid-feedback">{{ errors[0] }}</span>
+                            <span v-if="passed" class="valid-feedback">成功輸入</span>
+                          </ValidationProvider>
+                          <ValidationProvider rules="required" name="tel" class="form-group" tag="div" v-slot="{ errors, classes, passed }">
+                            <!-- 輸入框 -->
+                            <label for="tel">電話</label>
+                            <input id="tel" type="text" name="tel" v-model="form.user.tel"
+                                  class="form-control" :class="classes">
+                            <!-- 錯誤訊息 -->
+                            <span class="invalid-feedback">{{ errors[0] }}</span>
+                            <span v-if="passed" class="valid-feedback">成功輸入</span>
+                          </ValidationProvider>
+                          <ValidationProvider rules="required" name="address" class="form-group" tag="div" v-slot="{ errors, classes, passed }">
+                            <!-- 輸入框 -->
+                            <label for="address">地址</label>
+                            <input id="address" type="text" name="address" v-model="form.user.address"
+                                  class="form-control" :class="classes">
+                            <!-- 錯誤訊息 -->
+                            <span class="invalid-feedback">{{ errors[0] }}</span>
+                            <span v-if="passed" class="valid-feedback">成功輸入</span>
+                          </ValidationProvider>
                           <div class="text-right">
                             <router-link to="/home" class="btn btn-secondary">繼續選購</router-link>
                             <button type="submit" class="btn btn-primary" :disabled="invalid">送出表單</button>
