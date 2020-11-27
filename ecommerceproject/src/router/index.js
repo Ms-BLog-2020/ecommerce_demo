@@ -78,9 +78,9 @@ export default new VueRouter({
                 },
                 {
                     name: 'AdminFinishPay',
-                    path: 'admin_finish_pay/:orderId',
+                    path: 'admin_finish_pay',
                     component: AdminFinishPay,
-                    meta: { requiresAuth: true } //確保進入頁面前有經過驗證
+                    // meta: { requiresAuth: true } //確保進入頁面前有經過驗證
                 },
             ]
         },

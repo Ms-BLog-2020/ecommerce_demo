@@ -1,107 +1,83 @@
 <template>
-    <div>
-        <form>
-                <h4 class="text-center my-4">購買資訊</h4>
-                <table class="table table-sm">
-                <thead>
-                    <tr>
-                    <th width="100"></th>
-                    <th>商品名稱</th>
-                    <th width="100">數量</th>
-                    <th width="80">小計</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    
-                    <td class="align-middle"></td>
-                    <td class="align-middle"></td>
-                    <td class="align-middle"></td>
-                    <td class="align-middle text-right">$520</td>
-                    </tr>
-                    <tr>
-                    <td colspan="3" class="text-right">合計</td>
-                    <td class="text-right">
-                        <strong>$580</strong>
-                    </td>
-                    </tr>
-                </tbody>
-                </table>
-                <hr>
-                <h4 class="text-center my-4">個人資料</h4>
-                <table class="table">
-                <tbody>
-                    <tr>
-                    <th width="200">Email</th>
-                    <td></td>
-                    </tr>
-                    <tr>
-                    <th>姓名 </th>
-                    <td></td>
-                    </tr>
-                    <tr>
-                    <th>電話 </th>
-                    <td></td>
-                    </tr>
-                    <tr>
-                    <th>地址 </th>
-                    <td></td>
-                    </tr>
-                </tbody>
-                </table>
-                
-            </form>
-    </div>
+  <div>
+    <Loading :active.sync="isLoading"></Loading>
+    <table class="table mt-4">
+      <thead>
+        <tr>
+          <th>購買時間</th>
+          <th>Email</th>
+          <th>購買款項</th>
+          <th>應付金額</th>
+          <th>是否付款</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, key) in sortOrder" :key="key"
+          v-if="orders.length"
+          :class="{'text-secondary': !item.is_paid}">
+          <td>{{ item.create_at | date }}</td>
+          <td><span v-text="item.user.email" v-if="item.user"></span></td>
+          <td>
+            <ul class="list-unstyled">
+              <li v-for="(product, i) in item.products" :key="i">
+                {{ product.product.title }} 數量：{{ product.qty }}
+                {{ product.product.unit }}
+              </li>
+            </ul>
+          </td>
+          <td class="text-right">{{ item.total | currency }}</td>
+          <td>
+            <strong v-if="item.is_paid" class="text-success">已付款</strong>
+            <span v-else class="text-muted">尚未付款</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+  </div>
 </template>
 
 <script>
-export default {
-    data(){
-        return{
-          orderId: '',
-          order: {}
-        }
-    },
-    methods:{
-        finishOrder(){
-            const vm = this;
-            const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/orders/${vm.orderId}`;
-            // vm.isLoading = true;
-            this.$http.get(url).then((response) => {
-                vm.order= response.data.order;
-                console.log(response);
-                // vm.isLoading = false;
-        });
-        },
-        // payOrder(){
-        //     const vm = this;
-        //     const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/pay/${vm.orderId}`;
-        //     vm.isLoading = true;
-        //     this.$http.post(url).then((response) => {
-        //         console.log(response);
-        //         if (response.data.success){
-        //             vm.getOrder();
-        //         }
-        // //         vm.isLoading = false;
-        // });
-        // }
-    },
-    created(){
-       this.orderId=this.$route.params.orderId;
-        console.log(this.orderId);
-        this.finishOrder();
-        
-    },
-    mounted(){
-      $(document).ready(function () {
-      $('#removeModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // 選則當初觸發事件的按鈕
-        var title = button.data('title') // 使用 data-* 來取得特定內容
 
-        var modal = $(this)
-        modal.find('.modal-title').text('確認' + title) // 寫入資料
-      })
-    });
-  }
-}
+export default {
+  data() {
+    return {
+      orders: {},
+      isNew: false,
+      isLoading: false,
+    };
+  },
+ 
+  methods: {
+    getOrders(a) {
+      const vm = this;
+      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/orders?page=${a}`;
+      vm.isLoading = true;
+      this.$http.get(url, vm.Product).then((response) => {
+        vm.orders = response.data.orders;
+        vm.isLoading = false;
+        console.log(response);
+      });
+    },
+  },
+  computed: {
+    sortOrder() {
+      const vm = this;
+      let newOrder = [];
+      if (vm.orders.length) {
+        newOrder = vm.orders.sort((a, b) => {
+          const aIsPaid = a.is_paid ? 1 : 0;
+          const bIsPaid = b.is_paid ? 1 : 0;
+          return bIsPaid - aIsPaid;
+        });
+      }
+      return newOrder;
+    },
+  },
+  created() {
+    this.getOrders();
+    // console.log(process.env.APIPATH);
+  },
+};
 </script>
