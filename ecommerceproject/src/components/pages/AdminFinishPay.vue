@@ -50,11 +50,11 @@ export default {
   },
  
   methods: {
-    getOrders(a) {
+    getOrders(currentPage=1) {
       const vm = this;
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/orders?page=${a}`;
+      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/orders?page=${currentPage}`;
       vm.isLoading = true;
-      this.$http.get(url, vm.Product).then((response) => {
+      this.$http.get(url).then((response) => {
         vm.orders = response.data.orders;
         vm.isLoading = false;
         console.log(response);

@@ -26,7 +26,7 @@
                      <span v-else>未啟用</span>
                     </td>
                     <td>
-                     <button class="btn btn-outline-primary btn-sm" @click="openModal(false,item)">編輯</button>
+                     <button class="btn btn-outline-success btn-sm" @click="openModal(false,item)">編輯</button>
                     </td>
                 </tr>
             </tbody>
@@ -272,4 +272,21 @@ export default {
 }
 </script>
 
-<div>
+
+
+<style>
+button.btn.btn-primary {
+    background-color: green;
+    border-radius: 20px 20px 20px 20px;
+    padding: 5px 20px;
+}
+button.btn.btn-outline-secondary {
+    border-radius: 20px 20px 20px 20px;
+    padding: 5px 20px;
+}
+button.btn.btn-outline-success.btn-sm{
+    border-radius: 20px 20px 20px 20px;
+    padding: 5px 15px;
+    
+}
+</style>

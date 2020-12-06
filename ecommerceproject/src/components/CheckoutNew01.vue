@@ -10,9 +10,7 @@
                 crossorigin="anonymous">
             <link rel="stylesheet" href="custom.css">
             <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300&display=swap">
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&family=Noto+Serif+JP&family=Noto+Serif+TC:wght@300&display=swap" >
-            <link href="/css/phone.css" rel="stylesheet" type="text/css" media="screen and (max-width: 600px)" />
+            <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300&display=swap">
         </head>
 
         <body>
@@ -22,34 +20,84 @@
             <div class="container">
               <div class="row">
                 <div class="block"></div>
-                <div class="col-md-12 col-icon">
+                <div class="col-md-12 col-icon"><img src="https://i.imgur.com/YiEgjNa.png" alt=""/></div>
+                <div class="col-md-12 col-navigation">
                   <div class="navigation">
-                    <img class="tea" src="https://i.imgur.com/YiEgjNa.png" alt=""/>
                     <div class="home">
                       <div class="japanese">ホーム </div>
-                      <div class="chinese">首頁     </div>
+                      <div class="chinese">    首頁     </div>
                     </div><i class="fa fa-caret-right"> </i>
                     <div class="checkout_form">
-                      <div class="japanese">入る</div>
-                      <div class="chinese">輸入</div>
+                      <div class="japanese">支払い</div>
+                      <div class="chinese"> 付款</div>
                     </div><i class="fa fa-caret-right"></i>
                     <div class="finish_order">
-                      <div class="japanese">支払い</div>
-                      <div class="chinese">付款</div>
+                      <div class="japanese">実施する</div>
+                      <div class="chinese">完成</div>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-12 col-checkout">
                 <div class="row">
-                  <div class="col-md-6 col-sm-12 col-buy-left">
-                        <h4>確認購物清單</h4>
+                  <div class="col-md-6 col-sm-12 col-buy">
+                      <h4>測試</h4>
+                      <hr/>
+                      <ValidationObserver v-slot="{ invalid }">
+                        <form @submit.prevent="createOrder">
+                          <ValidationProvider rules="required|email" name="email" class="form-group" tag="div" v-slot="{ errors, classes, passed }">
+                            <!-- 輸入框 -->
+                            <label for="email">Email</label>
+                            <input id="email" type="email" name="email" v-model="form.user.email"
+                                  class="form-control" :class="classes">
+                            <!-- 錯誤訊息 -->
+                            <span class="invalid-feedback">{{ errors[0] }}</span>
+                            <span v-if="passed" class="valid-feedback">Email 正確</span>
+                          
+                          </ValidationProvider>
+                          <ValidationProvider rules="required" name="name" class="form-group" tag="div" v-slot="{ errors, classes, passed }">
+                            <!-- 輸入框 -->
+                            <label for="name">姓名</label>
+                            <input id="name" type="text" name="name" v-model="form.user.name"
+                                  class="form-control" :class="classes">
+                            <!-- 錯誤訊息 -->
+                            <span class="invalid-feedback">{{ errors[0] }}</span>
+                            <span v-if="passed" class="valid-feedback">成功輸入</span>
+                          </ValidationProvider>
+                          <ValidationProvider rules="required" name="tel" class="form-group" tag="div" v-slot="{ errors, classes, passed }">
+                            <!-- 輸入框 -->
+                            <label for="tel">電話</label>
+                            <input id="tel" type="text" name="tel" v-model="form.user.tel"
+                                  class="form-control" :class="classes">
+                            <!-- 錯誤訊息 -->
+                            <span class="invalid-feedback">{{ errors[0] }}</span>
+                            <span v-if="passed" class="valid-feedback">成功輸入</span>
+                          </ValidationProvider>
+                          <ValidationProvider rules="required" name="address" class="form-group" tag="div" v-slot="{ errors, classes, passed }">
+                            <!-- 輸入框 -->
+                            <label for="address">地址</label>
+                            <input id="address" type="text" name="address" v-model="form.user.address"
+                                  class="form-control" :class="classes">
+                            <!-- 錯誤訊息 -->
+                            <span class="invalid-feedback">{{ errors[0] }}</span>
+                            <span v-if="passed" class="valid-feedback">成功輸入</span>
+                          </ValidationProvider>
+                          <div class="text-right">
+                            <router-link to="/home" class="btn btn-secondary">繼續選購</router-link>
+                            <button type="submit" class="btn btn-primary" :disabled="invalid">送出表單</button>
+                          </div>
+                        </form>
+                      </ValidationObserver>
+                  </div>
+                  
+                  <div class="col-md-6 col-sm-12 col-buy">
+                        <h4>測試</h4>
                         <hr/>
                         <div class="card">
                         <div class="card-header" id="headingOne">
                             <h6 class="mb-0 d-flex align-items-center">
                             <a data-toggle="collapse" href="#collapseOne">
                                 顯示購物車細節
-                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                <i class="fa fa-angle-down" aria-hidden="true"></i>
                             </a>
                             <span class="h3 ml-auto mb-0">{{ cart.total }}元</span>
                             </h6>
@@ -60,7 +108,7 @@
                             <thead>
                             <tr>
                                 <th width="30"></th>
-                                <th width="30"></th>
+                                <th width="100"></th>
                                 <th>商品名稱</th>
                                 <th width="100">數量</th>
                                 <th width="80">小計</th>
@@ -92,71 +140,8 @@
                         </table>
                         </div>
                   </div>
-                  <div class="col-md-6 col-sm-12 col-buy-right">
-                      <h4>填寫個人資料</h4>
-                      <hr/>
-                      <ValidationObserver v-slot="{ invalid }">
-                        <form @submit.prevent="createOrder">
-                          <div class="form-row">
-                            <ValidationProvider rules="required" name="name" class="form-group col-md-6 col-sm-12" tag="div" v-slot="{ errors, classes, passed }">
-                              <!-- 輸入框 -->
-                              <label for="name">姓名</label>
-                              <input id="name" type="text" name="name" v-model="form.user.name"
-                                    class="form-control" :class="classes">
-                              <!-- 錯誤訊息 -->
-                              <span class="invalid-feedback">{{ errors[0] }}</span>
-                              <span v-if="passed" class="valid-feedback">成功輸入</span>
-                            </ValidationProvider>
-                            <ValidationProvider rules="required" name="tel" class="form-group col-md-6 col-sm-12" tag="div" v-slot="{ errors, classes, passed }">
-                              <!-- 輸入框 -->
-                              <label for="tel">電話</label>
-                              <input id="tel" type="text" name="tel" v-model="form.user.tel"
-                                    class="form-control" :class="classes">
-                              <!-- 錯誤訊息 -->
-                              <span class="invalid-feedback">{{ errors[0] }}</span>
-                              <span v-if="passed" class="valid-feedback">成功輸入</span>
-                            </ValidationProvider>
-                          </div> 
-                            <ValidationProvider rules="required|email" name="email" class="form-group" tag="div" v-slot="{ errors, classes, passed }">
-                              <!-- 輸入框 -->
-                              <label for="email">Email</label>
-                              <input id="email" type="email" name="email" v-model="form.user.email"
-                                    class="form-control" :class="classes">
-                              <!-- 錯誤訊息 -->
-                              <span class="invalid-feedback">{{ errors[0] }}</span>
-                              <span v-if="passed" class="valid-feedback">Email 正確</span>
-                            
-                            </ValidationProvider>
-                            
-                            <ValidationProvider rules="required" name="address" class="form-group" tag="div" v-slot="{ errors, classes, passed }">
-                              <!-- 輸入框 -->
-                              <label for="address">地址</label>
-                              <input id="address" type="text" name="address" v-model="form.user.address"
-                                    class="form-control" :class="classes">
-                              <!-- 錯誤訊息 -->
-                              <span class="invalid-feedback">{{ errors[0] }}</span>
-                              <span v-if="passed" class="valid-feedback">成功輸入</span>
-                            </ValidationProvider>
-                            
-                            <div class="text-right">
-                            
-                            
-                              <router-link tag="button" to="/home" class="btn btn-success">繼續選購</router-link>
-                              <button  type="submit" class="btn btn-danger" :disabled="invalid">送出表單</button>
-                            
-                            </div>
-                           
-                        </form>
-                      </ValidationObserver>
-                  </div>
-                  
-                  
                   </div>
                 </div>
-
-
-
-
               </div>
             </div>
           </header>
@@ -276,7 +261,7 @@ export default {
       this.$http.post(url, { data: order }).then((response) => {
             console.log('訂單已建立', response);
             if (response.data.success) {
-              vm.$router.push(`/checkout_finish_pay/${response.data.orderId}`);
+              vm.$router.push(`/customer_finish_pay/${response.data.orderId}`);
             }
           });
     }
@@ -291,28 +276,22 @@ export default {
 </script>
 
 <style>
-  
   * {
-    font-family: "M PLUS Rounded 1c", "Noto Serif TC";
+  font-family: "Noto Serif JP", "Noto Serif TC";
   }
-  html {
-  height: 100%; }
 
- 
   h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-weight: bold;
   }
 
   header.jumbotron {
+    text-align: center;
     background-image: url(https://res.klook.com/images/fl_lossy.progressive,q_65/c_fit,w_1295,h_720,f_auto/w_80,x_15,y_15,g_south_west,l_klook_water/activities/q75bagntcomdftmlz0pr/TeaCeremonyinHokkaido.webp);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: center;
     background-size: cover;
+    background-position: center center;
+    padding: 60px;
     color: green;
-    margin-bottom: 0px;
-    height: 720px;
-    
+    height: 800px;
   }
   header.jumbotron .block {
     padding: 300px;
@@ -329,53 +308,28 @@ export default {
   header.jumbotron .col-icon {
     height: 100px;
   }
-  header.jumbotron .col-icon img.tea, header.jumbotron .col-icon .home, header.jumbotron .col-icon i.fa.fa-caret-right, header.jumbotron .col-icon .finish_order, header.jumbotron .col-icon .checkout_form {
+  header.jumbotron .col-icon img {
+    width: 70px;
+    padding-top: 15px;
+    margin-bottom: 10px;
+  }
+  header.jumbotron .col-navigation .navigation {
+    color: gray;
+    opacity: 0.5;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+  header.jumbotron .col-navigation .navigation .home, header.jumbotron .col-navigation .navigation i.fa.fa-caret-right, header.jumbotron .col-navigation .navigation .finish_order, header.jumbotron .col-navigation .navigation .checkout_form {
     display: inline-block;
     margin: 5px;
     letter-spacing: 2px;
   }
-  header.jumbotron .col-icon .navigation {
-    color: gray;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-top: 20px;
-  }
-  header.jumbotron .col-icon .navigation .japanese {
+  header.jumbotron .col-navigation .navigation .japanese {
     font-size: 5px;
   }
-  header.jumbotron .col-icon .navigation .checkout_form {
+  header.jumbotron .col-navigation .navigation .checkout_form {
     color: green;
     font-weight: 900;
-  }
-  header.jumbotron .col-icon img {
-    width: 70px;
-    padding-bottom: 20px;
-    opacity: 1;
-  }
-  
-  header.jumbotron .col-checkout .col-buy-left {
-    padding: 25px
-  }
-  header.jumbotron .col-checkout .col-buy-right {
-    padding: 25px
-  }
-  button.btn.btn-success,button.btn.btn-danger {
-    border-radius: 20px 20px 20px 20px;
-    padding: 5px 20px;
-    margin: 0px 3px;
-  }
-  @media screen and (max-width: 600px){
-      header.jumbotron {
-          height: 2000px;
-          background-size: auto 100%;
-      }
-      header.jumbotron .block{
-          height: 2300px;
-          padding: 0px;
-          width: 95%;
-          margin-bottom: 0%
-          
-      }
   }
 
 

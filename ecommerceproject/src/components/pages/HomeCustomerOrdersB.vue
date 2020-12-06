@@ -1,17 +1,6 @@
 <template>
     <div>
-        <div class="d-flex mb-4">
-                    <!-- Search bar -->
-                    <form class="form-inline my-3 my-lg-0">
-                      <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-warning" type="submit">
-                            <i class="fa fa-search" aria-hidden="true"></i> Search</button>
-                        </div>
-                      </div>
-                    </form>
-        </div>
+        
         <loading :active.sync="isLoading"></loading>
         <div class="row mb-4 mt-4">
             <div class="col-md-4 mb-4" v-for="item in products" :key="item.id"  v-if="item.category==='直播活動'">

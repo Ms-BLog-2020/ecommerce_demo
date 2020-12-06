@@ -1,16 +1,6 @@
 <template>
     <div>
         <div class="d-flex mb-4">
-                    <!-- Search bar -->
-                    <form class="form-inline my-3 my-lg-0">
-                      <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-warning" type="submit">
-                            <i class="fa fa-search" aria-hidden="true"></i> Search</button>
-                        </div>
-                      </div>
-                    </form>
         </div>
         <loading :active.sync="isLoading"></loading>
         <div class="row mb-4 mt-4">
@@ -45,31 +35,9 @@
                 </div>
             </div>
         </div>
+        
        
-        <!--分頁標籤-->
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item" :class="{'disabled':!pagination.has_pre}">
-                <a class="page-link" href="#" aria-label="Previous" @click.prevent="getProducts(pagination.current_page - 1)">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                </li>
-                <li class="page-item" v-for="page in pagination.total_pages" :key="page" 
-
-                :class="{'active':pagination.current_page===page}"
-                
-                @click.prevent="getProducts(page)">
-                <a class="page-link" href="#">{{page}}</a>
-                </li>
-                <li class="page-item" :class="{'disabled':!pagination.has_next}">
-                <a class="page-link" href="#" aria-label="Next" @click.prevent="getProducts(pagination.current_page + 1)">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-                </li>
-            </ul>
-        </nav>
+        
         
 
         <!-- Modal -->
@@ -83,6 +51,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    
                     <select name="" class="form-control mt-3" v-model="product.num">
                       <option :value="num" v-for="num in 10" :key="num">
                         選購{{num}} {{product.unit}}
@@ -198,3 +167,4 @@ export default {
   },
 };
 </script>
+

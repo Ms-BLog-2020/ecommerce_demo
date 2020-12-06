@@ -1,19 +1,37 @@
+
 <template>
+
   <div>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&family=Noto+Serif+JP&family=Noto+Serif+TC:wght@300&display=swap" >
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300&display=swap" rel="stylesheet">
+        <link href="/css/phone.css" rel="stylesheet" type="text/css" media="screen and (max-width: 600px)" />
+    </head>
+
+
+
+
+
+  
+  <header class="jumbotron">
    <form class="form-signin" @submit.prevent="signin">
-      <h1 class="h3 mb-3 font-weight-normal">請先登入</h1>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" v-model="user.username" class="form-control" placeholder="Email address" required autofocus>
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" v-model="user.password" class="form-control" placeholder="Password" required>
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
+      <h1 class="h3 mb-3 font-weight-normal">後台登入</h1>
+      <div class="form-group">
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" v-model="user.username" class="form-control" placeholder="Email address" required autofocus>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+      <div class="form-group">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" v-model="user.password" class="form-control" placeholder="Password" required>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary btn-sm" type="submit">我要登入</button>
+      </div>
+      
     </form>
+    </header>
   </div>   
 </template>
 
@@ -51,6 +69,7 @@ export default {
 html,
 body {
   height: 100%;
+  
 }
 
 body {
@@ -72,7 +91,7 @@ body {
   width: 100%;
   max-width: 330px;
   padding: 15px;
-  margin: 0 auto;
+  margin: 0px auto;
 }
 .form-signin .checkbox {
   font-weight: 400;
@@ -97,5 +116,51 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+header.jumbotron {
+    background-image: url(https://i.imgur.com/ArAhKSL.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: green;
+    margin-bottom: 0px;
+    height: 720px;
+    padding: 80px;
+  }
+input#inputEmail.form-control {
+  padding: 8px;
+  border-radius: 8px 8px 8px 8px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: solid 1px white;
+  
+}
+input#inputPassword.form-control {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding: 8px;
+  border-radius: 8px 8px 8px 8px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: solid 1px white;
+}
+button.btn.btn-primary.btn-sm {
+  background-color: rgba(237, 28, 36, 1);
+  border: none;
+  border-radius: 20px 20px 20px 20px;
+  padding: 8px 20px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+h1.h3.mb-3.font-weight-normal{
+  color: white;
+  font-family: 'Noto Serif TC', serif;
+  text-align: center;
+  letter-spacing: 2px;
+}
+@media screen and (max-width: 600px){
+     header.jumbotron {
+          padding-top: 25%;
+      }
+  }
+
 </style>
 

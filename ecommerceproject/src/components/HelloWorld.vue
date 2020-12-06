@@ -10,24 +10,22 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
           crossorigin="anonymous">
         <link rel="stylesheet" href="custom.css">
+        <!-- Bootstrap CSS 新增加的2020/10/28 -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
 
       </head>
 
       <body>
         
-            <!-- headers -->
-            <nav class="navbar navbar-light bg-light">
-              <a class="navbar-brand" href="shoppingCart.html">
-                <i class="fa fa-heart text-info" aria-hidden="true"></i>
-                六角血拼賣賣
-              </a>
-              <!-- 購物車內的數量 (Button 內包含 icon, 數量 badge) -->
+            
+            
+            <nav class="navbar navbar-default navbar-fixed-top navbar-top">
               <div class="dropdown ml-auto">
-                
                 <router-link to="/login" class="nav-link">
                 登入
                 </router-link>
-                
               </div>
               <button class="btn btn-sm btn-cart" data-toggle="dropdown" data-flip="false">
                 <i class="fa fa-shopping-cart text-dark fa-2x" aria-hidden="true"></i>
@@ -68,19 +66,22 @@
               </div>
               
             </nav>
-            
-            <div class="jumbotron jumbotron-fluid jumbotron-bg d-flex align-items-end">
+            <header class="jumbotron jumbotron-fluid jumbotron-bg d-flex align-items-end">
               <div class="container">
                 <div class="p-3 bg-lighter">
-                  <h1 class="display-3 font-weight-bold">買到剁手手！最後出清</h1>
-                  <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                  <h1 class="display-3">你有多久沒有好好靜下來喝一杯茶了?</h1>
+                  <p class="lead">一杯のお茶のためにどれくらい落ち着かなかったのですか？</p>
                 </div>
               </div>
-            </div>
+            </header>
+
+           
             <div class="container main-contant mb-1">
               <div class="row">
-                <Homesidebar></Homesidebar>
-                <div class="col-md-9">
+                <div class="col-md-12">
+                  <Homesidebar></Homesidebar>
+                </div>
+                <div class="col-md-12">
                   <router-view></router-view>
                 </div>
               </div>
@@ -138,6 +139,16 @@ import $ from 'jquery'; //載入modal
 import Homesidebar from './Homesidebar';
 
 // $('.dropdown-toggle').dropdown();
+
+$(window).scroll(function(evt){
+  if($(window).scrollTop()>0)
+  $(".navbar").removeClass("navbar-top");
+  else
+  $(".navbar").addClass("navbar-top")
+  
+});
+
+var s = skrollr.init();
 
 
 export default {
@@ -278,6 +289,89 @@ export default {
 
      
   </script>
+
+  <style>
+  * {
+    font-family: 'Noto Serif JP','Noto Serif TC'
+  }
+
+  h1.display-3{
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: 2px
+  }
+  p.lead{
+    opacity: 0.6
+  }
+  nav.navbar {
+    transition-duration: 0.5s;
+  }
+  nav.navbar-default.navbar-fixed-top.navbar-top nav.navbar-brand {
+    background-color: none;
+  }
+
+  nav.navbar.navbar-default.navbar-fixed-top.navbar-top {
+    background-color: green;
+  }
+  nav.navbar.navbar-default.navbar-fixed-top.navbar-top a {
+    color: white;
+  }
+  nav.navbar.navbar-default.navbar-fixed-top.navbar-top a:hover {
+    color: #ff6e3a;
+    transition-duration: 0.5s;
+  }
+
+  header.jumbotron {
+    text-align: center;
+    background-image: url(https://res.klook.com/images/fl_lossy.progressive,q_65/c_fit,w_1295,h_720,f_auto/w_80,x_15,y_15,g_south_west,l_klook_water/activities/q75bagntcomdftmlz0pr/TeaCeremonyinHokkaido.webp);
+    background-size: cover;
+    background-position:50% 40%;
+    background-attachment: fixed;
+    margin-bottom: 0px;
+    padding: 0px
+  }
+  header.jumbotron h4 {
+    opacity: 0.6;
+    font-weight: normal;
+  }
+  header.jumbotron hr {
+    max-width: 60px;
+    border: solid 3px #ff6e3a;
+  }
+  header.jumbotron .container {
+    color: white;
+    padding: 200px 0px;
+  }
+  section.button{
+    padding-top: 30px;
+  }
+  .col-category {
+    padding: 0px;
+    display: inline-block;
+  }
+  .col-category .line {
+    height: 1px;
+    width: 100%;
+    background-color: gray;
+    transition-duration: 0.3s;
+  }
+  .col-category h4 {
+    padding-bottom: 10px;
+  }
+  .col-category:hover h4 {
+    color: green;
+  }
+  .col-category:hover .line {
+    background-color: green;
+    height: 5px;
+  }
+  section {
+    text-align: center;
+    padding: 80px;
+  }
+
+
+  </style>
 
 
 

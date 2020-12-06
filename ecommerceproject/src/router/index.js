@@ -12,7 +12,8 @@ import AdminFinishPay from '@/components/pages/AdminFinishPay';
 
 import Checkout from '@/components/Checkout';
 import Productdetail from '@/components/Productdetail';
-import CustomerFinishPay from '@/components/CustomerFinishPay';
+import CheckoutFinishPay from '@/components/CheckoutFinishPay';
+import LandingPage from '@/components/LandingPage';
 
 Vue.use(VueRouter)
 
@@ -20,7 +21,7 @@ export default new VueRouter({
     routes: [
         {
             path: '*',
-            redirect: '/login', //避免用戶去不存在的頁面
+            redirect: '/home', //避免用戶去不存在的頁面
         },
         {
             name: 'Home',
@@ -46,14 +47,19 @@ export default new VueRouter({
             ]
         },
         {
+            name: 'LandingPage',
+            path: '/landing_page',
+            component: LandingPage,
+        },
+        {
             name: 'Checkout',
             path: '/checkout',
             component: Checkout,
         },
         {
-            name: 'CustomerFinishPay',
-            path: '/customer_finish_pay/:orderId',
-            component: CustomerFinishPay,
+            name: 'CheckoutFinishPay',
+            path: '/checkout_finish_pay/:orderId',
+            component: CheckoutFinishPay,
         },
         {
             name: 'Productdetail',
