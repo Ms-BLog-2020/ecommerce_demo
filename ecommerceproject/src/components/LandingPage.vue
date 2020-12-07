@@ -5,6 +5,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+        <link href="/css/phone.css" rel="stylesheet" type="text/css" media="screen and (max-width: 600px)" />
         
       </head>
 
@@ -65,8 +66,8 @@
                     <div class="img"><img id="powder_box" src="https://i.imgur.com/Zl7y2im.png" alt=""/></div><img id="powder_spoon" src="https://i.imgur.com/RwfEFGz.png" alt=""/><img id="shadow" src="https://i.imgur.com/U3lrzAg.png" alt=""/>
                     <div class="text">
                     <div class="title">
-                        <h2>茶杓</h2>
-                        <h4>ちゃしゃく</h4>
+                        <h4>茶杓</h4>
+                        <p>ちゃしゃく</p>
                     </div>
                     <div class="intro">
                         <p>取用茶粉時使用工具，<br>大多為竹製。<br>是茶道重要工具。</p>
@@ -76,19 +77,19 @@
                 <div class="col-md-4 tea"><img id="tea_shadow" src="https://i.imgur.com/BaGzubW.png" alt=""/><img id="tea" src="https://i.imgur.com/EOAXV4Q.png" alt=""/><img id="brush" src="https://i.imgur.com/Rn053NF.png" alt=""/>
                     <div class="text_top">
                     <div class="title">
-                        <h2>茶筅</h2>
-                        <h4>ちゃせん</h4>
+                        <h4>茶筅</h4>
+                        <p>ちゃせん</p>
                     </div>
                     <div class="intro">
-                        <p>泡茶時攪拌用竹製工具，<br>外觀設計因流派而有所不同。</p>
+                        <p>泡茶時攪拌用竹製工具，<br>外觀設計因流派而不同。</p>
                     </div>
                     </div>
                 </div>
                 <div class="col-md-4 cover"><img id="shadow" src="https://i.imgur.com/U3lrzAg.png" alt=""/><img id="cover" src="https://i.imgur.com/4Pjd8Xj.png" alt=""/><img id="powder_box" src="https://i.imgur.com/Swmg2Du.png" alt=""/>
                     <div class="text">
                     <div class="title">
-                        <h2>薄器</h2>
-                        <h4>うすき</h4>
+                        <h4>薄器</h4>
+                        <p>うすき</p>
                     </div>
                     <div class="intro">
                         <p>放置薄茶粉的器具，<br>又因形狀像棗子，<br>日文稱之為"棗（なつめ）"。</p>
@@ -116,7 +117,11 @@
                     <h4>きっさ てじゅん</h4>
                     <p>茶主會以左手持茶杓、右手打開茶蓋, 讓茶碗面向自己, 再將熱水注入後攪動, 這是茶會開始前清理茶具的方式。<br>清洗完後, 將廢水倒去、擦拭完畢後, 茶主會再向客人表示禮儀, 才開始正式沏茶, 而助手此時也會奉上茶點。<br>接著以茶杓取出抹茶粉, 量為二分之一匙, 放入兩杓後再將熱水慢慢倒入, 倒入完畢後,以茶筅均勻快速地攪拌直至出現泡沫。   </p>
                 </div>
-                <div class="col-md-6 img" data-bottom-top="transform: translateY(-100px);opacity: 0" data-center="transform: translateY(0px);opacity: 1"><img id="step02" src="https://i.imgur.com/r27JR6F.jpg"/></div>
+                <div class="col-md-6 img" data-bottom-top="transform: translateY(-100px);opacity: 0" data-center="transform: translateY(0px);opacity: 1">
+                    <div class="frame">
+                    <img id="step02" src="https://i.imgur.com/r27JR6F.jpg"/>
+                    </div>
+                </div>
                 </div>
                 <div class="row">
                 <div class="line line03"></div>
@@ -169,22 +174,15 @@
 
 <script>
 
-var video = document.getElementById("myVideo");
 
+export default {
+  mounted() {
+      
+      var video = document.getElementById("myVideo");
+      var s = skrollr.init();
+    }
+};
 
-var s = skrollr.init();
-
-$(document).ready(function(){
-  $("#cup_step").toggle(
-    function(){$("#cup_step").attr({"src": "https://i.imgur.com/DX9I6JV.png"})
-               ;},
-    function(){$("#cup_step").attr({"src": "https://i.imgur.com/nU4Kks2.png"})
-               ;},
-    function(){$("#cup_step").attr({"src": "https://i.imgur.com/fPYoAUd.png"});
-  },
-  function(){$("#cup_step").attr({"src": "https://i.imgur.com/mTqvO5d.png"});
-  });
-});
 
 </script>
 
@@ -201,8 +199,9 @@ $(document).ready(function(){
     header {
     position: relative;
     margin-bottom: 0px;
+    height: 800px;
     }
-
+    
     section#tools {
     position: relative;
     }
@@ -294,6 +293,8 @@ $(document).ready(function(){
     background-color: #efeff0;
     margin-top: 0px;
     }
+
+    
     section#tools .powder_box {
     height: 450px;
     }
@@ -308,17 +309,19 @@ $(document).ready(function(){
     }
     section#tools .powder_box .text {
     z-index: 5;
-    color: silver;
+    color: rgba(0,0,0,0.4);
     opacity: 0;
     transition: 1s;
     letter-spacing: 1px;
     line-height: 25px;
+    position: absolute;
+    top: 15%;
     }
     section#tools .powder_box .text .title {
     border-bottom: solid 1px #b4b4b4;
-    width: 50%;
+    width: 110%;
     padding-bottom: 5px;
-    z-index: 5;
+    z-index: -3;
     }
     section#tools .powder_box .text .intro {
     padding-top: 5px;
@@ -327,10 +330,11 @@ $(document).ready(function(){
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    top: 20%;
     }
     section#tools .powder_box img#powder_box {
     z-index: 3;
-    top: 25%;
+    top: 45%;
     }
     section#tools .powder_box img#powder_spoon {
     z-index: 3;
@@ -340,8 +344,11 @@ $(document).ready(function(){
     section#tools .powder_box img#shadow {
     z-index: 1;
     left: 60%;
-    top: 25%;
+    top: 45%;
     }
+
+
+
     section#tools .tea:hover img#brush {
     transform: scale(1.2) translate(-45%, -47%);
     }
@@ -349,45 +356,59 @@ $(document).ready(function(){
     opacity: 0.6;
     }
     section#tools .tea .text_top {
-    color: silver;
+    color: rgba(0,0,0,0.4);
     transition: 1s;
     letter-spacing: 1px;
     line-height: 25px;
     opacity: 0;
+    position: absolute;
+    top: 20%;
+    width: 120%;
     }
     section#tools .tea .text_top .title {
     border-right: solid 1px #b4b4b4;
-    width: 50%;
+    width:30%;
     padding-right: 10px;
     text-align: right;
-    height: 150px;
+    height: 180px;
+    position: absolute;
     }
     section#tools .tea .text_top .intro {
-    padding-left: 1px;
+    padding-left: 10px;
+    top: -5%;
+    left: 30%;
+    position: absolute;
+
     }
     section#tools .tea .text_top .intro, section#tools .tea .text_top .title {
     display: inline-block;
     }
     section#tools .tea img#tea {
     position: absolute;
-    left: 50%;
-    top: 43%;
+    left: 48%;
+    top: 63%;
     transform: translate(-50%, -50%);
     }
     section#tools .tea img#brush {
     position: absolute;
-    left: 54%;
-    top: 45%;
+    left: 52%;
+    top: 65%;
     transform: translate(-50%, -50%);
     transition: 0.5s;
     }
     section#tools .tea img#tea_shadow {
     opacity: 0.7;
     position: absolute;
-    left: 73%;
-    top: 63%;
+    left: 75%;
+    top: 78%;
     transform: translate(-50%, -50%);
     }
+
+
+
+
+
+
     section#tools .cover:hover img#cover {
     transform: translate(-70%, -50%);
     }
@@ -395,35 +416,42 @@ $(document).ready(function(){
     opacity: 0.6;
     }
     section#tools .cover .text {
-    color: silver;
+    color: rgba(0,0,0,0.4);
     opacity: 0;
     transition: 1s;
     letter-spacing: 1px;
     line-height: 25px;
+    position: absolute;
+    width: 100%;
+    top: 20%;
     }
     section#tools .cover .text .title {
     border-right: solid 1px #b4b4b4;
     width: 50%;
+    position: absolute;
+    top: 50%;
     padding-right: 10px;
     text-align: right;
     height: 150px;
     }
     section#tools .cover .text .intro {
     padding-left: 1px;
+    position: absolute;
+    left: 53%;
     }
     section#tools .cover .text .intro, section#tools .cover .text .title {
-    display: inline-block;
+    
     }
     section#tools .cover img#shadow {
     position: absolute;
     left: 60%;
-    top: 53%;
+    top: 68%;
     transform: translate(-50%, -50%);
     opacity: 0.7;
     }
     section#tools .cover img#cover {
     position: absolute;
-    top: 43%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 3;
@@ -432,7 +460,7 @@ $(document).ready(function(){
     section#tools .cover img#powder_box {
     position: absolute;
     z-index: 1;
-    top: 43%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(165deg) scale(1.5);
     }
@@ -504,9 +532,16 @@ $(document).ready(function(){
     line-height: 36px;
     padding-top: 20px;
     }
+   
+    img#step02 {
+        padding-right: 0px;
+    }
+    .col-md-6.img {
+        padding-right: 0px;
+    }
 
     footer.jumbotron {
-    height: 900px;
+    height: 800px;
     text-align: center;
     background-image: url(https://i.imgur.com/TiFd46G.jpg);
     background-size: cover;
@@ -548,6 +583,12 @@ $(document).ready(function(){
     top: 500px;
     transform: translateY(-50%);
     opacity: 0.6;
+    }
+    @media screen and (max-width: 600px) {
+        img#icon {
+            width: 25%;
+            margin-bottom: 50px;
+        }
     }
 
 </style>
