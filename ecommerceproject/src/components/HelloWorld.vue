@@ -89,10 +89,10 @@
             <footer class="bg-light text-muted py-5">
               <div class="container">
                 <ul class="list-inline text-center">
-                  <li class="list-inline-item">© Copright 2017 六角血拼賣賣</li>
+                  <li class="list-inline-item">© Copright 2020 有茶室</li>
                   <li class="list-inline-item">
                     <a class="text-info" href="#">
-                      <i class="fa fa-instagram" aria-hidden="true"></i> Instagrame</a>
+                      <i class="fa fa-instagram" aria-hidden="true"></i> Instagram</a>
                   </li>
                   <li class="list-inline-item">
                     <a class="text-info" href="#">
@@ -102,7 +102,6 @@
                     <a class="text-info" href="#">About</a>
                   </li>
                 </ul>
-                <p class="text-center">Made with Bootstrap4</p>
               </div>
             </footer>
 

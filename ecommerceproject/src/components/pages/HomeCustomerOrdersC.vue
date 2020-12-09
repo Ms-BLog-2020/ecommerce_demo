@@ -1,22 +1,15 @@
 <template>
     <div>
-        <head>
-          <meta charset="utf-8">
-          <link rel="stylesheet" href="./shadow.css" />
-        </head>
-
-
 
         <loading :active.sync="isLoading"></loading>
         <div class="row mb-4 mt-4 ">
-            <div class="col-md-4 mb-4 card-body " v-for="item in products" :key="item.id"  v-if="item.category==='課程'">
+            <div class="col-md-4 mb-4 card-body " v-for="item in products" :key="item.id"  v-if="item.category==='相關書籍'">
                 <div class="card border-0 shadow-sm">
                     <div class="card_img" style="height: 150px; background-size: cover; background-position: center"
                     :style="{backgroundImage:`url(${item.imageUrl})`}"
                     >
                     </div>
                     <div class="card-body ">
-                    <span class="badge badge-secondary float-right ml-2">{{item.category}}</span>
                     <h5 class="card-title">
                         <a href="#" class="text-dark">{{item.title}}</a>
                     </h5>
@@ -236,6 +229,10 @@ button.btn.btn-outline-secondary.btn-sm {
 }
 button.btn.btn-outline-danger.btn-sm.ml-auto {
   border-radius: 30px;
+}
+.badge.badge-pill.badge-secondary.float-middle.ml-2 {
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 
 </style>

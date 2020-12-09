@@ -97,11 +97,9 @@
                         <label for="category">分類</label>
                         <select class="form-control" id="category"
                         placeholder="請輸入分類" v-model="tempProduct.category">
-                            <option>課程</option>
-                            <option>工作坊</option>
-                            <option>直播活動</option>
-                            <option>一對一諮詢</option>
-                            <option>教材</option>
+                            <option>茶道體驗</option>
+                            <option>必備茶具</option>
+                            <option>相關書籍</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">

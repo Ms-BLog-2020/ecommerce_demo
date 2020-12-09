@@ -12,7 +12,7 @@ import { ValidationObserver, ValidationProvider, extend, localize, configure } f
 import TW from 'vee-validate/dist/locale/zh_TW.json'
 import * as rules from 'vee-validate/dist/rules';
 import $ from 'jquery';
-import 'skrollr';
+
 
 window.$ = $;
 Object.keys(rules).forEach((rule) => {
