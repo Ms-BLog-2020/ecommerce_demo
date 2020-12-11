@@ -48,7 +48,7 @@ export default new VueRouter({
         },
         {
             name: 'LandingPage',
-            path: '/landing_page',
+            path: '/',
             component: LandingPage,
         },
         {
@@ -92,7 +92,7 @@ export default new VueRouter({
         },
         {
             name: 'Dashboard02',
-            path: '/',
+            path: '/admin',
             component: Dashboard02,
             children: [
                 {

@@ -20,11 +20,11 @@
       <h1 class="h3 mb-3 font-weight-normal">後台登入</h1>
       <div class="form-group">
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" v-model="user.username" class="form-control" placeholder="Email address" required autofocus>
+        <input type="email" id="inputEmail" v-model="user.username" class="form-control" placeholder="請輸入 szheng10431122@gmail.com" required autofocus>
       </div>
       <div class="form-group">
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" v-model="user.password" class="form-control" placeholder="Password" required>
+        <input type="password" id="inputPassword" v-model="user.password" class="form-control" placeholder="請輸入 ecommerceproject" required>
       </div>
       <div class="text-center">
         <button class="btn btn-primary btn-sm" type="submit">我要登入</button>
